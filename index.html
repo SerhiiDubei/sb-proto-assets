@@ -88,13 +88,15 @@ body.picker #scp{display:block!important}
 .proj .m{flex:1}.proj .m .t{font-weight:700;font-size:15px}.proj .m .k{color:var(--dim);font-size:12px;margin-top:2px}
 .proj.new{border-style:dashed;color:var(--dim)}
 #projname{cursor:pointer}
+.mods{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.mods span{font-size:11px;padding:5px 10px;border-radius:7px;border:1px solid var(--line);color:var(--dim)}
 </style></head><body class="picker">
 <header><div class="wrap">
  <div class="hrow"><h1>SB <b>Studio</b><span id="projname"> · Druid Battle Cup</span></h1>
   <div class="spend">$4.05 / $10</div>
   <button class="mob" onclick="document.body.classList.toggle('mobile')">📱 мобайл</button></div>
  <div class="stepper">
-  <div class="step done" data-s="sc0"><span class="n">✓</span>Задум</div>
+  <div class="step done" data-s="scz"><span class="n">✓</span>Задум</div>
   <div class="step on" data-s="sc0"><span class="n">2</span>Кастинг</div>
   <div class="step" data-s="sc1"><span class="n">3</span>Зйомка</div>
   <div class="step" data-s="sc2"><span class="n">4</span>Сцени</div>
@@ -120,6 +122,25 @@ body.picker #scp{display:block!important}
   <div class="m"><div class="t">Новий проєкт</div>
    <div class="k">sb new — назва, бриф, і кастинг збереться сам</div></div>
  </div>
+</section>
+<section class="screen" id="scz">
+ <h2>Задум · бриф історії</h2>
+ <div class="cov">
+  <b>Логлайн</b>
+  <p style="margin:6px 0 12px">Ярема проводить людину через правила турніру з настільного тенісу так, щоб наприкінці вона натиснула «Зареєструватися».</p>
+  <b>Тон</b>
+  <p style="margin:6px 0 12px;color:var(--dim)">Стендап: захід → хук → панч. Суха інформація розбавлена приколами «для тих, хто шарить».</p>
+  <b>Формат</b>
+  <p style="margin:6px 0 12px;color:var(--dim)">Мобільний інтерактивний онбординг · 9:16 · кожна панель = екран телефону.</p>
+  <b>Модулі</b>
+  <div class="mods"><span>M1 Хук</span><span>M2 Турнір: дві фази</span><span>M3 FAQ</span><span>M4 Офлайн · 5 вересня</span><span>M5 CTA</span></div>
+ </div>
+ <div class="actions">
+  <button class="btn acid" onclick="goCasting()">Розібрати на кастинг →</button>
+  <button class="btn">Редагувати бриф</button>
+ </div>
+ <div class="note"><b>Задум — джерело кастингу:</b> з модулів виводяться сутності й сцени.
+ Зміниш задум — система підсвітить, що в кастингу застаріло.</div>
 </section>
 <section class="screen on" id="sc0">
  <div class="entry">
@@ -223,6 +244,7 @@ drop.addEventListener('drop',e=>{
   document.getElementById('covtx').textContent=Math.min(got,10)+' / 10';
  }});
 
+function goCasting(){document.querySelectorAll('.step')[1].click();}
 function openProj(){document.body.classList.remove('picker');}
 document.getElementById('projname').onclick=()=>document.body.classList.add('picker');
 </script></body></html>
