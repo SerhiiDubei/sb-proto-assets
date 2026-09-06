@@ -90,6 +90,14 @@ body.picker #scp{display:block!important}
 #projname{cursor:pointer}
 .mods{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .mods span{font-size:11px;padding:5px 10px;border-radius:7px;border:1px solid var(--line);color:var(--dim)}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+body.mobile .sgrid{grid-template-columns:1fr}
+.story{position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 42px 12px 12px;font-size:12px;cursor:pointer}
+.story p{color:var(--dim);margin-top:5px}
+.story .love{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--dim);cursor:pointer}
+.story.approved{border-color:var(--acid)}
+.story.approved .love{background:var(--acid);color:#111;border-color:var(--acid)}
+.story.approved b{color:var(--acid)}
 </style></head><body class="picker">
 <header><div class="wrap">
  <div class="hrow"><h1>SB <b>Studio</b><span id="projname"> · Druid Battle Cup</span></h1>
@@ -135,6 +143,16 @@ body.picker #scp{display:block!important}
   <b>Модулі</b>
   <div class="mods"><span>M1 Хук</span><span>M2 Турнір: дві фази</span><span>M3 FAQ</span><span>M4 Офлайн · 5 вересня</span><span>M5 CTA</span></div>
  </div>
+ <h2 style="margin-top:16px">Варіації історії — накидано 6, ти вибираєш</h2>
+ <div class="sgrid">
+  <div class="story approved"><b>v1 · Стендап-екскурсія</b><p>Ярема веде від монумента до столу; панчі на стиках модулів.</p><button class="love">♥</button></div>
+  <div class="story"><b>v2 · Легенда Друїда</b><p>Турнір як міф парку: стіл — вівтар, реєстрація — посвята.</p><button class="love">♡</button></div>
+  <div class="story"><b>v3 · Мок'юментарі</b><p>Ярема — коментатор «великого фіналу»: серйозний тон про несерйозне.</p><button class="love">♡</button></div>
+  <div class="story"><b>v4 · Челендж</b><p>Від першої особи: 8 матчів = 8 рівнів, CTA — «почати гру».</p><button class="love">♡</button></div>
+  <div class="story"><b>v5 · Ретро-гра</b><p>Весь онбординг у fat pixel: обери бійця, пройди сітку.</p><button class="love">♡</button></div>
+  <div class="story"><b>v6 · Тихі кадри</b><p>Майже без слів: двір і предмети в мікрорусі, текст лише в CTA.</p><button class="love">♡</button></div>
+ </div>
+ <div class="actions" style="margin-top:8px"><button class="btn">↻ Ще 6 варіацій<span class="price">$0.02</span></button></div>
  <div class="actions">
   <button class="btn acid" onclick="goCasting()">Розібрати на кастинг →</button>
   <button class="btn">Редагувати бриф</button>
@@ -223,7 +241,7 @@ document.querySelectorAll('.step').forEach(t=>t.onclick=()=>{
  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('on'));
  t.classList.add('on');document.getElementById(t.dataset.s).classList.add('on');});
 document.querySelectorAll('.love').forEach(b=>b.onclick=e=>{e.stopPropagation();
- const v=b.closest('.variant');v.classList.toggle('approved');
+ const v=b.closest('.variant,.story');v.classList.toggle('approved');
  b.textContent=v.classList.contains('approved')?'♥':'♡';});
 document.querySelectorAll('.frame').forEach(f=>f.onclick=()=>{
  document.querySelectorAll('.frame').forEach(x=>x.classList.remove('on'));f.classList.add('on');});
